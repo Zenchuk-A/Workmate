@@ -39,8 +39,9 @@ def read_csv(file):
         return []
 
 
-def get_data4report(source, analyzed_col1: int, analyzed_col2: int):
+def get_data4report(source, analyzed_col1=int, analyzed_col2=int):
     data4report = []
+    header4report = []
     for row in source:
         if row[0].upper() == 'NAME':
             header4report = [row[analyzed_col1], row[analyzed_col2]]
@@ -88,5 +89,7 @@ if __name__ == "__main__":
     for file in args.files:
         csvfiles.extend(read_csv(file))
 
-    report_data, report_header = get_data4report(csvfiles, 1, 3)
+    report_data, report_header = get_data4report(
+        csvfiles, analyzed_col1=1, analyzed_col2=3
+    )
     create_report(tuple(report_data), args.report, report_header)
