@@ -1,12 +1,13 @@
+import csv
 import os
 import subprocess
 import sys
 import tempfile
-import csv
 
-# from unittest.mock import patch
-import pytest
 from pathlib import Path
+
+import pytest
+
 
 from main import create_report, get_data4report, read_csv
 
