@@ -34,7 +34,7 @@ def read_csv(file):
     if os.path.exists(file):
         with open(file, 'r') as f:
             reader = csv.reader(f)
-            return [row for row in reader]
+            return [row for row in reader if len(row) == 4]
     else:
         return []
 
@@ -42,17 +42,20 @@ def read_csv(file):
 def get_data4report(source, analyzed_col1=int, analyzed_col2=int):
     data4report = []
     header4report = []
-    for row in source:
-        if row[0].upper() == 'NAME':
-            header4report = [row[analyzed_col1], row[analyzed_col2]]
-        else:
-            data4report.append([row[analyzed_col1], float(row[analyzed_col2])])
+    if source and len(source[0]) == 4 and source[0][0].upper() == 'NAME':
+        for row in source:
+            if row[0].upper() == 'NAME':
+                header4report = [row[analyzed_col1], row[analyzed_col2]]
+            else:
+                data4report.append(
+                    [row[analyzed_col1], float(row[analyzed_col2])]
+                )
     return data4report, header4report
 
 
 def create_report(data: tuple, report_name, report_header) -> str:
     if not data:
-        print("Нет данных для формирования отчета")
+        print("Нет данных для формирования отчёта")
         return
 
     sum_dict = {}
@@ -77,10 +80,11 @@ def create_report(data: tuple, report_name, report_header) -> str:
         stralign="left",
         showindex=[i for i in range(1, len(sum_dict) + 1)],
     )
-    with open(report_name, "w", encoding="utf-8") as f:
-        f.write(out_table)
-    print(out_table)
-    print()
+    if out_table:
+        with open(report_name, "w", encoding="utf-8") as f:
+            f.write(out_table)
+        print(out_table)
+        print()
 
 
 if __name__ == "__main__":

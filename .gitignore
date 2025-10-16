@@ -1,8 +1,10 @@
 venv
+.vscode
 Task.md
 image.png
 image-1.png
-
+__pycache__
 report*
 products*
 average-rating.txt
+.coverage
