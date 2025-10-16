@@ -1,5 +1,19 @@
 Параметр __--report__ не является обязательным. При его отсутствии имя для файла отчёта берётся равным "_average-rating.txt_"
 
+### Примеры запуска
+
+![alt text](image-1.png)
+
+![alt text](image-2.png)
+
+![alt text](image-4.png)
+
+![alt text](image-5.png)
+
+Опечатка в имени файла
+
+![alt text](image-3.png)
+
 ### Добавление нового отчёта
 Что бы добавить новый вариант отчёта нужно изменить параметры вызова функции _get_data4report_(csvfiles, __analyzed_col1=1__, __analyzed_col2=3__)
 
